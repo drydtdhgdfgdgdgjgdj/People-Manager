@@ -1,0 +1,21 @@
+﻿@using PeopleManager.Blazor.Model
+<article style="border:1px solid black; flex-grow:1; width: 33%;">
+    <header>
+        <h2>@Person.FirstName @Person.LastName</h2>
+    </header>
+    <p>This is the best employee ever</p>
+    <footer>
+        @if (!string.IsNullOrWhiteSpace(Person.Email))
+        {
+            <a href="mailto:@Person.Email">@Person.Email</a>
+        }
+        <p>LINK TO DETAILS</p>
+    </footer>
+</article>
+
+@code
+{
+    [Parameter]
+    [EditorRequired]
+    public Person Person { get; set; }
+}

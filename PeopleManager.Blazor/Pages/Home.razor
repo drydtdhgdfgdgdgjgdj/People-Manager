@@ -1,0 +1,32 @@
+﻿@page "/"
+@using PeopleManager.Blazor.Contracts
+@using PeopleManager.Blazor.Model
+
+@inject IPersonService PersonService
+
+<PageTitle>People</PageTitle>
+
+<h1>Company Employees</h1>
+
+<section style="display:flex;flex-wrap:wrap;gap:10px;">
+
+    @foreach (var person in People)
+    {
+        <PersonCard Person="person" />
+    }
+</section>
+
+@code
+{
+    private IList<Person> People { get; set; } = new List<Person>();
+
+    protected override Task OnInitializedAsync()
+    {
+        var people = PersonService.Find();
+        People = people;
+
+        return base.OnInitializedAsync();
+    }
+
+    
+}

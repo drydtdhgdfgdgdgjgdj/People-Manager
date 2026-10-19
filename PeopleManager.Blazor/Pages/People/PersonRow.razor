@@ -1,0 +1,16 @@
+﻿@using PeopleManager.Blazor.Model
+
+<tr>
+    <td>@Person.FirstName</td>
+    <td>@Person.LastName</td>
+    <td>@Person.Email</td>
+    <td>
+        <a href="/people/@Person.Id">Details</a>
+    </td>
+</tr>
+
+@code {
+    [Parameter]
+    [EditorRequired]
+    public Person Person { get; set; }
+}

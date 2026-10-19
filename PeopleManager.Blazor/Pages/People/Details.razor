@@ -1,0 +1,38 @@
+﻿@page "/people/{id:int}"
+
+@using PeopleManager.Blazor.Contracts
+@using PeopleManager.Blazor.Model
+
+@inject IPersonService PersonService
+
+<h3>Details</h3>
+
+@if (Person is not null)
+{
+    <h2>@Person.FirstName @Person.LastName</h2>
+    <p>
+        <a href="mailto:@Person.Email">@Person.Email</a>
+    </p>
+}
+else
+{
+    <p>Unable to locate person with id @Id.</p>
+}
+
+<a href="/people">Back</a>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    private Person? Person { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var person = PersonService.Get(Id);
+        Person = person;
+
+        await base.OnInitializedAsync();
+    }
+
+}
